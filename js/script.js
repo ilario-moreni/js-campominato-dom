@@ -8,8 +8,10 @@ const button = document.getElementById('my-button');
 
 /* funzione della generazione della grigla */
 function generateGameGrid(){
+    const grid = document.querySelector('#my-table')
     /* pulisce la tabella se ricliccata */
-    document.querySelector('#my-table').innerHTML = '';
+    grid.innerHTML = '';
+    let arrayBombs = [];
     /* genera la tabella */
     for (let i = 0; i < 100; i++){
         const cell = document.createElement('div');
@@ -18,16 +20,35 @@ function generateGameGrid(){
         cell.addEventListener('click',
         /*  3 - funzione del toggle delle celle */
         function(){
+
             this.classList.toggle('clicked')
             console.log(this.innerText)
             /* inserire qui il check delle bombe */
+            if(arrayBombs.includes(parseInt(this.innerText))){
+                this.classList.add('bomb')
+            }
         })
-        document.querySelector('#my-table').appendChild(cell)
+        grid.appendChild(cell)
     }
+    arrayBombs = generateBombsArray();
+    console.log(arrayBombs);
 }
 
 button.addEventListener('click', function(){
     generateGameGrid()
 })
 
+/* 5 */
+function generateBombsArray(){
+    let bombs = [];
 
+    let i = 0;
+    while(i<16){
+        let num = Math.floor(Math.random()*100) + 1;
+        if (!bombs.includes(num)){
+            bombs.push(num);
+            i++;
+        }
+    }
+    return bombs;
+}
