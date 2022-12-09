@@ -11,6 +11,7 @@ function generateGameGrid(){
     const grid = document.querySelector('#my-table')
     /* pulisce la tabella se ricliccata */
     grid.innerHTML = '';
+    grid.classList.remove('events-none')
     let arrayBombs = [];
     let score = 0;
     /* genera la tabella */
