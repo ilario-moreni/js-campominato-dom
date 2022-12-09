@@ -12,6 +12,7 @@ function generateGameGrid(){
     /* pulisce la tabella se ricliccata */
     grid.innerHTML = '';
     let arrayBombs = [];
+    let score = 0;
     /* genera la tabella */
     for (let i = 0; i < 100; i++){
         const cell = document.createElement('div');
@@ -20,12 +21,15 @@ function generateGameGrid(){
         cell.addEventListener('click',
         /*  3 - funzione del toggle delle celle */
         function(){
-
+            score++;
             this.classList.toggle('clicked')
             console.log(this.innerText)
             /* inserire qui il check delle bombe */
             if(arrayBombs.includes(parseInt(this.innerText))){
                 this.classList.add('bomb')
+                grid.classList.add('events-none')
+                score--;
+                alert(`Game Over il tuo punteggio è: ${score} punti`)
             }
         })
         grid.appendChild(cell)
@@ -51,4 +55,10 @@ function generateBombsArray(){
         }
     }
     return bombs;
+}
+
+/* calcolo punteggio */
+
+function finalScore(){
+
 }
