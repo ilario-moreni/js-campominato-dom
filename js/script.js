@@ -51,7 +51,8 @@ function generateGameGrid(){
         /*  3 - funzione del toggle delle celle */
         function(){
             score++;
-            this.classList.toggle('clicked')
+            this.classList.add('clicked')
+            this.classList.add('events-none');
             console.log(this.innerText)
             /* inserire qui il check delle bombe */
             if(arrayBombs.includes(parseInt(this.innerText))){
